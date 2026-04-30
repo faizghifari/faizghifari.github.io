@@ -1,0 +1,97 @@
+---
+// KaTeX renderer for MDX blog posts
+// Renders $...$ (inline) and $$...$$ (display) LaTeX expressions
+---
+
+<div id="katex-container"></div>
+
+<script is:inline>
+  // Simple LaTeX renderer using KaTeX CDN
+  document.addEventListener('DOMContentLoaded', () => {
+    // Load KaTeX from CDN
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css';
+    document.head.appendChild(link);
+
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js';
+    script.onload = renderMath;
+    document.head.appendChild(script);
+
+    function renderMath() {
+      const { katex } = window;
+      if (!katex) return;
+
+      // Find all prose content
+      const prose = document.querySelector('.prose');
+      if (!prose) return;
+
+      // Process display math: $$...$$
+      const displayPattern = /\$\$([\s\S]+?)\$\$/g;
+      // Process inline math: $...$
+      const inlinePattern = /\$([^\$\n]+?)\$/g;
+
+      // Walk text nodes and replace
+      const walker = document.createTreeWalker(prose, NodeFilter.SHOW_TEXT, null);
+      const textNodes = [];
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        // Skip script/style/pre/code nodes
+        const parent = node.parentElement;
+        if (parent && (parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE' || parent.tagName === 'PRE' || parent.tagName === 'CODE')) {
+          continue;
+        }
+        if (node.textContent.includes('$')) {
+          textNodes.push(node);
+        }
+      }
+
+      textNodes.forEach(node => {
+        const text = node.textContent;
+        const container = document.createElement('span');
+
+        // Split by $$ first, then $
+        let parts = text.split(/(\$\$[\s\S]+?\$\$)/g);
+        let html = '';
+
+        for (const part of parts) {
+          if (part.startsWith('$$') && part.endsWith('$$')) {
+            const math = part.slice(2, -2).trim();
+            try {
+              html += katex.renderToString(math, {
+                displayMode: true,
+                throwOnError: false,
+              });
+            } catch (e) {
+              html += part;
+            }
+          } else {
+            // Handle inline math
+            let inlineParts = part.split(/(\$[^\$\n]+?\$)/g);
+            for (const ip of inlineParts) {
+              if (ip.startsWith('$') && ip.endsWith('$')) {
+                const math = ip.slice(1, -1).trim();
+                try {
+                  html += katex.renderToString(math, {
+                    displayMode: false,
+                    throwOnError: false,
+                  });
+                } catch (e) {
+                  html += ip;
+                }
+              } else {
+                html += ip;
+              }
+            }
+          }
+        }
+
+        if (html !== text) {
+          container.innerHTML = html;
+          node.parentNode.replaceChild(container, node);
+        }
+      });
+    }
+  });
+</script>

@@ -1,0 +1,120 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import KaTeXRenderer from '../components/KaTeXRenderer.astro';
+
+interface Props {
+  title: string;
+  date: string;
+  tags?: string[];
+  readTime?: number;
+}
+
+const { title, date, tags = [], readTime } = Astro.props;
+---
+
+<BaseLayout title={title} description={`Blog post: ${title}`}>
+  <article class="section">
+    <div class="container-narrow">
+      <!-- Post Header -->
+      <header class="mb-10">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+          {title}
+        </h1>
+        <div class="flex flex-wrap items-center gap-3 text-sm text-gray-500 dark:text-gray-400 mb-4">
+          <time datetime={date}>{new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+          {readTime && <span>{readTime} min read</span>}
+        </div>
+        {tags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {tags.map((tag: string) => (
+              <a href={`/blog?tag=${encodeURIComponent(tag)}`} class="tag no-underline">
+                {tag}
+              </a>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <!-- Post Content -->
+      <div class="prose prose-gray dark:prose-invert max-w-none">
+        <slot />
+      </div>
+
+      <!-- Back to Blog -->
+      <div class="mt-12 pt-8 border-t border-gray-200 dark:border-slate-700">
+        <a href="/blog" class="text-indigo-600 dark:text-indigo-400 font-medium no-underline hover:underline">
+          &larr; Back to Blog
+        </a>
+      </div>
+    </div>
+  </article>
+  <KaTeXRenderer />
+</BaseLayout>
+
+<style is:global>
+  /* Code highlighting with highlight.js */
+  pre {
+    @apply bg-gray-900 dark:bg-slate-900 text-gray-100 rounded-lg p-4 overflow-x-auto text-sm leading-relaxed;
+  }
+  code {
+    @apply bg-gray-100 dark:bg-slate-800 text-gray-800 dark:text-gray-200 rounded px-1.5 py-0.5 text-sm font-mono;
+  }
+  pre code {
+    @apply bg-transparent p-0 text-inherit;
+  }
+  .hljs {
+    @apply bg-transparent text-inherit p-0;
+  }
+
+  /* Prose styling for blog content */
+  .prose h2 {
+    @apply text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4;
+  }
+  .prose h3 {
+    @apply text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3;
+  }
+  .prose h4 {
+    @apply text-lg font-semibold text-gray-900 dark:text-white mt-4 mb-2;
+  }
+  .prose p {
+    @apply text-gray-700 dark:text-gray-300 leading-relaxed mb-4;
+  }
+  .prose ul {
+    @apply list-disc list-inside text-gray-700 dark:text-gray-300 mb-4 space-y-1;
+  }
+  .prose ol {
+    @apply list-decimal list-inside text-gray-700 dark:text-gray-300 mb-4 space-y-1;
+  }
+  .prose li {
+    @apply leading-relaxed;
+  }
+  .prose blockquote {
+    @apply border-l-4 border-indigo-500 dark:border-indigo-400 pl-4 italic text-gray-600 dark:text-gray-400 my-4;
+  }
+  .prose a {
+    @apply text-indigo-600 dark:text-indigo-400 no-underline hover:underline;
+  }
+  .prose img {
+    @apply rounded-lg my-6;
+  }
+  .prose table {
+    @apply w-full border-collapse my-6;
+  }
+  .prose th {
+    @apply bg-gray-100 dark:bg-slate-800 text-left px-4 py-2 font-semibold text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700;
+  }
+  .prose td {
+    @apply px-4 py-2 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-slate-700;
+  }
+  .prose hr {
+    @apply border-gray-200 dark:border-slate-700 my-8;
+  }
+
+  /* KaTeX / LaTeX styling */
+  .katex-display {
+    @apply my-6 overflow-x-auto;
+  }
+  .katex {
+    @apply text-gray-900 dark:text-gray-100;
+  }
+</style>

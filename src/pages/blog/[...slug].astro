@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import MdxPostLayout from '../../layouts/MdxPostLayout.astro';
+
+export async function getStaticPaths({ paginate }) {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const MDXContent = (await import(`../../content/blog/${post.slug}.mdx`)).default;
+---
+
+<MdxPostLayout title={post.data.title} date={post.data.date.toISOString()} tags={post.data.tags}>
+  <MDXContent />
+</MdxPostLayout>

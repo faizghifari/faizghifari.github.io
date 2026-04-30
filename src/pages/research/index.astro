@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PaperLinkIcons from '../../components/PaperLinkIcons.astro';
+import { formatAuthorList } from '../../utils/formatAuthors';
 
 interface Paper {
   title: string;
@@ -29,7 +31,7 @@ const publications: Paper[] = [
   },
   {
     title: 'BabyBabelLM: A Multilingual Benchmark of Developmentally Plausible Training Data',
-    authors: 'Jaap Jumelet, Abdellah Fourtassi, Akari Haga, Bastian Bunzeck, et al.',
+    authors: 'Jaap Jumelet, Abdellah Fourtassi, Akari Haga, Bastian Bunzeck, Faiz Ghifari Haznitrama, et al.',
     venue: 'EACL 2026 Main Conference',
     year: 2026,
     abstract: 'We present BabyBabelLM, a multilingual collection of datasets modeling the language a person observes from birth until they acquire a native language. We curate developmentally plausible pretraining data across multiple languages, enabling research on how language exposure shapes model capabilities.',
@@ -37,24 +39,16 @@ const publications: Paper[] = [
   },
   {
     title: 'Survey of Cultural Awareness in Language Models: Text and Beyond',
-    authors: 'Siddhesh Pawar, Junyeong Park, Jiho Jin, Arnav Arora, et al.',
+    authors: 'Siddhesh Pawar, Junyeong Park, Jiho Jin, Arnav Arora, Faiz Ghifari Haznitrama, et al.',
     venue: 'Computational Linguistics Journal',
     year: 2025,
     abstract: 'Large-scale deployment of large language models (LLMs) in various applications, such as chatbots and virtual assistants, requires LLMs to be culturally sensitive to the user to ensure inclusivity. This survey covers efforts towards incorporating cultural awareness into LLMs across text and multimodal domains.',
-    links: { pdf: 'https://arxiv.org/pdf/2411.00860', arxiv: 'https://arxiv.org/abs/2411.00860' },
-  },
-  {
-    title: 'Addressing Hallucination in Abstractive Dialogue Summarization via Span Identification and Correction',
-    authors: 'Faiz Ghifari Haznitrama, et al.',
-    venue: 'EMNLP 2024 Main Conference',
-    year: 2024,
-    abstract: 'We propose a post-processing approach to address hallucination in abstractive dialogue summarization through span identification and correction techniques, improving factual consistency of generated summaries.',
-    links: { acl: 'https://aclanthology.org/' },
+    links: { pdf: 'https://arxiv.org/pdf/2411.00860', arxiv: 'https://arxiv.org/abs/2411.00860', doi: 'https://doi.org/10.1162/coli.a.14' },
   },
   {
     title: 'Can LLM Generate Culturally Relevant Commonsense QA Data? Case Study in Indonesian and Sundanese',
     authors: 'Rifki Afina Putri, Faiz Ghifari Haznitrama, Dea Adhista, Alice Oh',
-    venue: 'C3NLP @ ACL 2024',
+    venue: 'EMNLP 2024 Main Conference',
     year: 2024,
     abstract: 'Large Language Models (LLMs) are increasingly being used to generate synthetic data for training and evaluating models. However, it is unclear whether they can generate a good quality of question answering data that is culturally relevant for under-resourced languages.',
     links: { pdf: 'https://arxiv.org/pdf/2402.17302', arxiv: 'https://arxiv.org/abs/2402.17302', github: 'https://github.com/faizghifari/id-csqa' },
@@ -62,10 +56,18 @@ const publications: Paper[] = [
   {
     title: 'Methodologies and Their Comparison in Complex Compound Aspect-Based Sentiment Analysis: A Survey',
     authors: 'Faiz Ghifari Haznitrama, et al.',
-    venue: 'AI Open Journal',
-    year: 2023,
+    venue: 'AI Open',
+    year: 2025,
     abstract: 'A comprehensive survey of methodologies and their comparison in complex compound aspect-based sentiment analysis tasks, covering approaches, datasets, and evaluation metrics.',
     links: { doi: 'https://doi.org/10.1016/j.aiopen.2025.02.002' },
+  },
+  {
+    title: 'Comparative Analysis of Recent Studies on Aspect-Based Sentiment Analysis',
+    authors: 'Faiz Ghifari Haznitrama, et al.',
+    venue: 'Annual Conference of KIPS',
+    year: 2023,
+    abstract: 'A comparative analysis of recent studies and approaches in aspect-based sentiment analysis.',
+    links: {},
   },
 ];
 
@@ -77,6 +79,14 @@ const preprints: Paper[] = [
     year: 2026,
     abstract: 'Large language models (LLMs) exhibit a unified "general factor" of capability across 10 benchmarks, a finding confirmed by our factor analysis of 156 models, yet they still struggle with simple, trivial tasks. We adapt neuropsychological tests to evaluate the cognitive mechanisms of LLMs, providing a grounded framework for understanding model capabilities.',
     links: { pdf: 'https://arxiv.org/pdf/2603.02540', arxiv: 'https://arxiv.org/abs/2603.02540' },
+  },
+  {
+    title: 'Addressing Hallucination in Abstractive Dialogue Summarization via Span Identification and Correction',
+    authors: 'Faiz Ghifari Haznitrama, et al.',
+    venue: 'Master\'s Thesis / OpenReview',
+    year: 2023,
+    abstract: 'We propose a post-processing approach to address hallucination in abstractive dialogue summarization through span identification and correction techniques, improving factual consistency of generated summaries.',
+    links: { openreview: 'https://openreview.net/' },
   },
 ];
 
@@ -121,29 +131,6 @@ const ongoing: OngoingItem[] = [
     tags: ['Reasoning', 'LLMs', 'Uncertainty'],
   },
 ];
-
-function renderPaper(paper: Paper) {
-  return `
-    <div class="card">
-      <h4 class="text-base font-semibold text-gray-900 dark:text-white mb-1">${paper.title}</h4>
-      <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">${paper.authors}</p>
-      <div class="flex flex-wrap items-center gap-2 mb-2">
-        <span class="tag">${paper.venue}</span>
-        <span class="tag">${paper.year}</span>
-      </div>
-      <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">${paper.abstract}</p>
-      ${Object.keys(paper.links).length > 0 ? `
-        <div class="flex flex-wrap gap-2">
-          ${Object.entries(paper.links).map(([key, url]) => `
-            <a href="${url}" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
-              ${key.charAt(0).toUpperCase() + key.slice(1)} &rarr;
-            </a>
-          `).join('')}
-        </div>
-      ` : ''}
-    </div>
-  `;
-}
 ---
 
 <BaseLayout
@@ -167,32 +154,62 @@ function renderPaper(paper: Paper) {
         </button>
       </div>
 
+      <!-- Publications Tab -->
       <div id="tab-publications" class="tab-content">
         <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">Peer-Reviewed Publications</h3>
         <div class="space-y-4">
           {publications.map((paper: Paper) => (
-            <div set:html={renderPaper(paper)} />
+            <div class="card">
+              <h4 class="text-base font-semibold text-gray-900 dark:text-white mb-1">{paper.title}</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-2" set:html={formatAuthorList(paper.authors)}></p>
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span class="tag">{paper.venue}</span>
+                <span class="tag">{paper.year}</span>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">{paper.abstract}</p>
+              {Object.keys(paper.links).length > 0 && <PaperLinkIcons links={paper.links} />}
+            </div>
           ))}
         </div>
         <div class="mt-8">
           <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">Theses</h3>
           <div class="space-y-4">
             {theses.map((paper: Paper) => (
-              <div set:html={renderPaper(paper)} />
+              <div class="card">
+                <h4 class="text-base font-semibold text-gray-900 dark:text-white mb-1">{paper.title}</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2" set:html={formatAuthorList(paper.authors)}></p>
+                <div class="flex flex-wrap items-center gap-2 mb-2">
+                  <span class="tag">{paper.venue}</span>
+                  <span class="tag">{paper.year}</span>
+                </div>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">{paper.abstract}</p>
+                {Object.keys(paper.links).length > 0 && <PaperLinkIcons links={paper.links} />}
+              </div>
             ))}
           </div>
         </div>
       </div>
 
+      <!-- Preprints Tab -->
       <div id="tab-preprints" class="tab-content hidden">
         <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">Preprints & Working Papers</h3>
         <div class="space-y-4">
           {preprints.map((paper: Paper) => (
-            <div set:html={renderPaper(paper)} />
+            <div class="card">
+              <h4 class="text-base font-semibold text-gray-900 dark:text-white mb-1">{paper.title}</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-2" set:html={formatAuthorList(paper.authors)}></p>
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span class="tag">{paper.venue}</span>
+                <span class="tag">{paper.year}</span>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">{paper.abstract}</p>
+              {Object.keys(paper.links).length > 0 && <PaperLinkIcons links={paper.links} />}
+            </div>
           ))}
         </div>
       </div>
 
+      <!-- Ongoing Tab -->
       <div id="tab-ongoing" class="tab-content hidden">
         <div class="space-y-4">
           {ongoing.map((item: OngoingItem) => (

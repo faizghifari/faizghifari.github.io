@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SocialLinks from '../components/SocialLinks.astro';
+import PaperLinkIcons from '../components/PaperLinkIcons.astro';
+import { formatAuthorList } from '../utils/formatAuthors';
 
 const recentPapers = [
   {
@@ -12,17 +14,17 @@ const recentPapers = [
   },
   {
     title: 'BabyBabelLM: A Multilingual Benchmark of Developmentally Plausible Training Data',
-    authors: 'Jaap Jumelet, Abdellah Fourtassi, Akari Haga, et al.',
+    authors: 'Jaap Jumelet, Abdellah Fourtassi, Akari Haga, Bastian Bunzeck, Faiz Ghifari Haznitrama, et al.',
     venue: 'EACL 2026 Main Conference',
     year: 2026,
     links: { pdf: 'https://arxiv.org/pdf/2510.10159', arxiv: 'https://arxiv.org/abs/2510.10159' },
   },
   {
-    title: 'Survey of Cultural Awareness in Language Models: Text and Beyond',
-    authors: 'Siddhesh Pawar, Junyeong Park, Jiho Jin, et al.',
-    venue: 'Computational Linguistics Journal',
-    year: 2025,
-    links: { pdf: 'https://arxiv.org/pdf/2411.00860', arxiv: 'https://arxiv.org/abs/2411.00860' },
+    title: 'Can LLM Generate Culturally Relevant Commonsense QA Data? Case Study in Indonesian and Sundanese',
+    authors: 'Rifki Afina Putri, Faiz Ghifari Haznitrama, Dea Adhista, Alice Oh',
+    venue: 'EMNLP 2024 Main Conference',
+    year: 2024,
+    links: { pdf: 'https://arxiv.org/pdf/2402.17302', arxiv: 'https://arxiv.org/abs/2402.17302', github: 'https://github.com/faizghifari/id-csqa' },
   },
 ];
 
@@ -113,18 +115,12 @@ const ongoingResearch = [
         {recentPapers.map((paper) => (
           <div class="card">
             <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-1">{paper.title}</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{paper.authors}</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2" set:html={formatAuthorList(paper.authors)}></p>
             <div class="flex flex-wrap items-center gap-2 mb-2">
               <span class="tag">{paper.venue}</span>
               <span class="tag">{paper.year}</span>
             </div>
-            <div class="flex flex-wrap gap-2">
-              {Object.entries(paper.links).map(([key, url]) => (
-                <a href={url} target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
-                  {key}
-                </a>
-              ))}
-            </div>
+            <PaperLinkIcons links={paper.links} />
           </div>
         ))}
       </div>
@@ -144,18 +140,12 @@ const ongoingResearch = [
         {recentPreprints.map((paper) => (
           <div class="card">
             <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-1">{paper.title}</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{paper.authors}</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2" set:html={formatAuthorList(paper.authors)}></p>
             <div class="flex flex-wrap items-center gap-2 mb-2">
               <span class="tag">{paper.venue}</span>
               <span class="tag">{paper.year}</span>
             </div>
-            <div class="flex flex-wrap gap-2">
-              {Object.entries(paper.links).map(([key, url]) => (
-                <a href={url} target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
-                  {key}
-                </a>
-              ))}
-            </div>
+            <PaperLinkIcons links={paper.links} />
           </div>
         ))}
       </div>
@@ -188,37 +178,6 @@ const ongoingResearch = [
               </a>
             )}
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Academic Profiles -->
-  <section class="section pt-4">
-    <div class="container-narrow">
-      <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">Academic Profiles</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        {[
-          { name: 'Google Scholar', url: 'https://scholar.google.com/citations?user=ZH3qXdUAAAAJ&hl=en&authuser=1' },
-          { name: 'Semantic Scholar', url: 'https://www.semanticscholar.org/author/Faiz-Ghifari-Haznitrama/2287841290' },
-          { name: 'ACL Anthology', url: 'https://aclanthology.org/people/faiz-ghifari-haznitrama/' },
-          { name: 'OpenReview', url: 'https://openreview.net/profile?id=%7EFaiz_Ghifari_Haznitrama1' },
-          { name: 'DBLP', url: 'https://dblp.org/pid/371/3974' },
-          { name: 'ORCID', url: 'https://orcid.org/0009-0005-0342-9261' },
-        ].map(profile => (
-          <a
-            href={profile.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="card flex items-center gap-2 py-3 px-4 no-underline group"
-          >
-            <svg class="w-4 h-4 text-gray-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-              {profile.name}
-            </span>
-          </a>
         ))}
       </div>
     </div>

@@ -20,30 +20,89 @@ interface OngoingItem {
 
 const publications: Paper[] = [
   {
-    title: 'Placeholder: Your First Paper',
-    authors: 'Faiz Ghifari Haznitrama, Co-Author One, Co-Author Two',
-    venue: 'ACL 2025',
+    title: 'OLA: Output Language Alignment in Code-Switched LLM Interactions',
+    authors: 'Juhyun Oh, Haneul Yoo, Faiz Ghifari Haznitrama, Alice Oh',
+    venue: 'ACL 2026 Main Conference',
+    year: 2026,
+    abstract: 'Code-switching, alternating between languages within a conversation, is natural for multilingual users, yet poses fundamental challenges for large language models (LLMs). When a user code-switches in their prompt to an LLM, they typically do not specify the expected language of the LLM response, and LLMs often fail to align their output language with user expectations.',
+    links: { pdf: 'https://arxiv.org/pdf/2601.03589', arxiv: 'https://arxiv.org/abs/2601.03589' },
+  },
+  {
+    title: 'BabyBabelLM: A Multilingual Benchmark of Developmentally Plausible Training Data',
+    authors: 'Jaap Jumelet, Abdellah Fourtassi, Akari Haga, Bastian Bunzeck, et al.',
+    venue: 'EACL 2026 Main Conference',
+    year: 2026,
+    abstract: 'We present BabyBabelLM, a multilingual collection of datasets modeling the language a person observes from birth until they acquire a native language. We curate developmentally plausible pretraining data across multiple languages, enabling research on how language exposure shapes model capabilities.',
+    links: { pdf: 'https://arxiv.org/pdf/2510.10159', arxiv: 'https://arxiv.org/abs/2510.10159' },
+  },
+  {
+    title: 'Survey of Cultural Awareness in Language Models: Text and Beyond',
+    authors: 'Siddhesh Pawar, Junyeong Park, Jiho Jin, Arnav Arora, et al.',
+    venue: 'Computational Linguistics Journal',
     year: 2025,
-    abstract: 'This is a placeholder. Papers will be auto-imported from Google Scholar, arXiv, ACL Anthology, OpenReview, DBLP, ORCID, and Semantic Scholar.',
-    links: { pdf: '#', arxiv: '#', acl: '#', github: '#' },
+    abstract: 'Large-scale deployment of large language models (LLMs) in various applications, such as chatbots and virtual assistants, requires LLMs to be culturally sensitive to the user to ensure inclusivity. This survey covers efforts towards incorporating cultural awareness into LLMs across text and multimodal domains.',
+    links: { pdf: 'https://arxiv.org/pdf/2411.00860', arxiv: 'https://arxiv.org/abs/2411.00860' },
+  },
+  {
+    title: 'Addressing Hallucination in Abstractive Dialogue Summarization via Span Identification and Correction',
+    authors: 'Faiz Ghifari Haznitrama, et al.',
+    venue: 'EMNLP 2024 Main Conference',
+    year: 2024,
+    abstract: 'We propose a post-processing approach to address hallucination in abstractive dialogue summarization through span identification and correction techniques, improving factual consistency of generated summaries.',
+    links: { acl: 'https://aclanthology.org/' },
+  },
+  {
+    title: 'Can LLM Generate Culturally Relevant Commonsense QA Data? Case Study in Indonesian and Sundanese',
+    authors: 'Rifki Afina Putri, Faiz Ghifari Haznitrama, Dea Adhista, Alice Oh',
+    venue: 'C3NLP @ ACL 2024',
+    year: 2024,
+    abstract: 'Large Language Models (LLMs) are increasingly being used to generate synthetic data for training and evaluating models. However, it is unclear whether they can generate a good quality of question answering data that is culturally relevant for under-resourced languages.',
+    links: { pdf: 'https://arxiv.org/pdf/2402.17302', arxiv: 'https://arxiv.org/abs/2402.17302', github: 'https://github.com/faizghifari/id-csqa' },
+  },
+  {
+    title: 'Methodologies and Their Comparison in Complex Compound Aspect-Based Sentiment Analysis: A Survey',
+    authors: 'Faiz Ghifari Haznitrama, et al.',
+    venue: 'AI Open Journal',
+    year: 2023,
+    abstract: 'A comprehensive survey of methodologies and their comparison in complex compound aspect-based sentiment analysis tasks, covering approaches, datasets, and evaluation metrics.',
+    links: { doi: 'https://doi.org/10.1016/j.aiopen.2025.02.002' },
   },
 ];
 
 const preprints: Paper[] = [
   {
-    title: 'Placeholder: Working Paper',
-    authors: 'Faiz Ghifari Haznitrama et al.',
-    venue: 'arXiv preprint',
+    title: 'A Neuropsychologically Grounded Evaluation of LLM Cognitive Abilities',
+    authors: 'Faiz Ghifari Haznitrama, Faeyza Rishad Ardi, Alice Oh',
+    venue: 'arXiv Preprint',
     year: 2026,
-    abstract: 'This section will hold preprints and working papers not yet peer-reviewed.',
-    links: { pdf: '#', arxiv: '#', github: '#' },
+    abstract: 'Large language models (LLMs) exhibit a unified "general factor" of capability across 10 benchmarks, a finding confirmed by our factor analysis of 156 models, yet they still struggle with simple, trivial tasks. We adapt neuropsychological tests to evaluate the cognitive mechanisms of LLMs, providing a grounded framework for understanding model capabilities.',
+    links: { pdf: 'https://arxiv.org/pdf/2603.02540', arxiv: 'https://arxiv.org/abs/2603.02540' },
+  },
+];
+
+const theses: Paper[] = [
+  {
+    title: 'Master\'s Thesis',
+    authors: 'Faiz Ghifari Haznitrama',
+    venue: 'KAIST, School of Computing',
+    year: 2023,
+    abstract: 'Master of Computer Science thesis at Korea Advanced Institute of Science and Technology.',
+    links: {},
+  },
+  {
+    title: 'Bachelor\'s Thesis',
+    authors: 'Faiz Ghifari Haznitrama',
+    venue: 'Institut Teknologi Bandung',
+    year: 2019,
+    abstract: 'Bachelor of Computer Science thesis at Institut Teknologi Bandung (ITB).',
+    links: {},
   },
 ];
 
 const ongoing: OngoingItem[] = [
   {
     title: 'Interpreter-as-Agent MT Evaluation',
-    description: 'Developing frameworks for evaluating machine translation quality using interpreter-agent paradigms.',
+    description: 'Developing frameworks for evaluating machine translation quality using interpreter-agent paradigms with LLMs.',
     status: 'In Progress',
     tags: ['Machine Translation', 'LLM Evaluation'],
     repo: 'https://github.com/faizghifari/interpreter-agent-eval',
@@ -62,6 +121,29 @@ const ongoing: OngoingItem[] = [
     tags: ['Reasoning', 'LLMs', 'Uncertainty'],
   },
 ];
+
+function renderPaper(paper: Paper) {
+  return `
+    <div class="card">
+      <h4 class="text-base font-semibold text-gray-900 dark:text-white mb-1">${paper.title}</h4>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">${paper.authors}</p>
+      <div class="flex flex-wrap items-center gap-2 mb-2">
+        <span class="tag">${paper.venue}</span>
+        <span class="tag">${paper.year}</span>
+      </div>
+      <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">${paper.abstract}</p>
+      ${Object.keys(paper.links).length > 0 ? `
+        <div class="flex flex-wrap gap-2">
+          ${Object.entries(paper.links).map(([key, url]) => `
+            <a href="${url}" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
+              ${key.charAt(0).toUpperCase() + key.slice(1)} &rarr;
+            </a>
+          `).join('')}
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
 ---
 
 <BaseLayout
@@ -73,92 +155,64 @@ const ongoing: OngoingItem[] = [
       <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">Research</h1>
       <p class="text-gray-600 dark:text-gray-400 mb-8">Publications, preprints, and ongoing research projects.</p>
 
-      <!-- Tabs -->
       <div class="flex gap-1 mb-8 border-b border-gray-200 dark:border-slate-700" id="tabs">
         <button class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-indigo-600 dark:border-indigo-400 text-indigo-600 dark:text-indigo-400 transition-colors" data-tab="publications">
-          Publications
+          Publications ({publications.length})
         </button>
         <button class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors" data-tab="preprints">
-          Preprints
+          Preprints ({preprints.length})
         </button>
         <button class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors" data-tab="ongoing">
-          Ongoing
+          Ongoing ({ongoing.length})
         </button>
       </div>
 
-      <!-- Publications Tab -->
       <div id="tab-publications" class="tab-content">
-        <div class="mb-4 p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg border border-indigo-200 dark:border-indigo-800">
-          <p class="text-sm text-indigo-700 dark:text-indigo-300">
-            <strong>Auto-import coming soon.</strong> Papers will be automatically imported from Google Scholar, arXiv, ACL Anthology, OpenReview, DBLP, ORCID, and Semantic Scholar with deduplication.
-          </p>
+        <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">Peer-Reviewed Publications</h3>
+        <div class="space-y-4">
+          {publications.map((paper: Paper) => (
+            <div set:html={renderPaper(paper)} />
+          ))}
         </div>
-        {publications.map((paper: Paper) => (
-          <div class="card mb-4">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">{paper.title}</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{paper.authors}</p>
-            <div class="flex flex-wrap items-center gap-2 mb-3">
-              <span class="tag">{paper.venue}</span>
-              <span class="tag">{paper.year}</span>
-            </div>
-            <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">{paper.abstract}</p>
-            <div class="flex flex-wrap gap-2">
-              {Object.entries(paper.links).map(([key, url]) => (
-                <a href={url} target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
-                  {key.charAt(0).toUpperCase() + key.slice(1)} &rarr;
-                </a>
-              ))}
-            </div>
+        <div class="mt-8">
+          <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">Theses</h3>
+          <div class="space-y-4">
+            {theses.map((paper: Paper) => (
+              <div set:html={renderPaper(paper)} />
+            ))}
           </div>
-        ))}
+        </div>
       </div>
 
-      <!-- Preprints Tab -->
       <div id="tab-preprints" class="tab-content hidden">
-        <div class="mb-4 p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg border border-indigo-200 dark:border-indigo-800">
-          <p class="text-sm text-indigo-700 dark:text-indigo-300">
-            <strong>Auto-import coming soon.</strong> Preprints will be pulled from arXiv and Semantic Scholar.
-          </p>
+        <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">Preprints & Working Papers</h3>
+        <div class="space-y-4">
+          {preprints.map((paper: Paper) => (
+            <div set:html={renderPaper(paper)} />
+          ))}
         </div>
-        {preprints.map((paper: Paper) => (
-          <div class="card mb-4">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">{paper.title}</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{paper.authors}</p>
-            <div class="flex flex-wrap items-center gap-2 mb-3">
-              <span class="tag">{paper.venue}</span>
-              <span class="tag">{paper.year}</span>
-            </div>
-            <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">{paper.abstract}</p>
-            <div class="flex flex-wrap gap-2">
-              {Object.entries(paper.links).map(([key, url]) => (
-                <a href={url} target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
-                  {key.charAt(0).toUpperCase() + key.slice(1)} &rarr;
-                </a>
-              ))}
-            </div>
-          </div>
-        ))}
       </div>
 
-      <!-- Ongoing Tab -->
       <div id="tab-ongoing" class="tab-content hidden">
-        {ongoing.map((item: OngoingItem) => (
-          <div class="card mb-4">
-            <div class="flex items-start justify-between mb-2">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h3>
-              <span class="tag">{item.status}</span>
+        <div class="space-y-4">
+          {ongoing.map((item: OngoingItem) => (
+            <div class="card">
+              <div class="flex items-start justify-between mb-2">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h3>
+                <span class="tag">{item.status}</span>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">{item.description}</p>
+              <div class="flex flex-wrap gap-2 mb-3">
+                {item.tags.map((tag: string) => <span class="tag">{tag}</span>)}
+              </div>
+              {item.repo && (
+                <a href={item.repo} target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
+                  View Repository &rarr;
+                </a>
+              )}
             </div>
-            <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">{item.description}</p>
-            <div class="flex flex-wrap gap-2 mb-3">
-              {item.tags.map((tag: string) => <span class="tag">{tag}</span>)}
-            </div>
-            {item.repo && (
-              <a href={item.repo} target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
-                View Repository &rarr;
-              </a>
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -167,18 +221,15 @@ const ongoing: OngoingItem[] = [
     document.addEventListener('DOMContentLoaded', () => {
       const tabs = document.querySelectorAll('.tab-btn');
       const contents = document.querySelectorAll('.tab-content');
-
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
           const target = tab.dataset.tab;
-
           tabs.forEach(t => {
             t.classList.remove('border-indigo-600', 'dark:border-indigo-400', 'text-indigo-600', 'dark:text-indigo-400');
             t.classList.add('border-transparent', 'text-gray-500', 'dark:text-gray-400');
           });
           tab.classList.remove('border-transparent', 'text-gray-500', 'dark:text-gray-400');
           tab.classList.add('border-indigo-600', 'dark:border-indigo-400', 'text-indigo-600', 'dark:text-indigo-400');
-
           contents.forEach(c => c.classList.add('hidden'));
           document.getElementById(`tab-${target}`)?.classList.remove('hidden');
         });

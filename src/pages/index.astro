@@ -4,34 +4,48 @@ import SocialLinks from '../components/SocialLinks.astro';
 
 const recentPapers = [
   {
-    title: 'Your Latest Paper Title Here',
-    authors: 'Faiz Ghifari Haznitrama, et al.',
-    venue: 'ACL 2025',
+    title: 'OLA: Output Language Alignment in Code-Switched LLM Interactions',
+    authors: 'Juhyun Oh, Haneul Yoo, Faiz Ghifari Haznitrama, Alice Oh',
+    venue: 'ACL 2026 Main Conference',
+    year: 2026,
+    links: { pdf: 'https://arxiv.org/pdf/2601.03589', arxiv: 'https://arxiv.org/abs/2601.03589' },
+  },
+  {
+    title: 'BabyBabelLM: A Multilingual Benchmark of Developmentally Plausible Training Data',
+    authors: 'Jaap Jumelet, Abdellah Fourtassi, Akari Haga, et al.',
+    venue: 'EACL 2026 Main Conference',
+    year: 2026,
+    links: { pdf: 'https://arxiv.org/pdf/2510.10159', arxiv: 'https://arxiv.org/abs/2510.10159' },
+  },
+  {
+    title: 'Survey of Cultural Awareness in Language Models: Text and Beyond',
+    authors: 'Siddhesh Pawar, Junyeong Park, Jiho Jin, et al.',
+    venue: 'Computational Linguistics Journal',
     year: 2025,
-    links: { pdf: '#', arxiv: '#', acl: '#' },
+    links: { pdf: 'https://arxiv.org/pdf/2411.00860', arxiv: 'https://arxiv.org/abs/2411.00860' },
   },
 ];
 
 const recentPreprints = [
   {
-    title: 'Working Paper Title Here',
-    authors: 'Faiz Ghifari Haznitrama, et al.',
-    venue: 'arXiv',
+    title: 'A Neuropsychologically Grounded Evaluation of LLM Cognitive Abilities',
+    authors: 'Faiz Ghifari Haznitrama, Faeyza Rishad Ardi, Alice Oh',
+    venue: 'arXiv Preprint',
     year: 2026,
-    links: { pdf: '#', arxiv: '#', github: '#' },
+    links: { pdf: 'https://arxiv.org/pdf/2603.02540', arxiv: 'https://arxiv.org/abs/2603.02540' },
   },
 ];
 
 const ongoingResearch = [
   {
     title: 'Interpreter-as-Agent MT Evaluation',
-    description: 'Evaluating machine translation quality using interpreter-agent paradigms.',
+    description: 'Evaluating machine translation quality using interpreter-agent paradigms with LLMs.',
     tags: ['Machine Translation', 'LLM Evaluation'],
     repo: 'https://github.com/faizghifari/interpreter-agent-eval',
   },
   {
     title: 'Multilingual NLP for Low-Resource Languages',
-    description: 'Improving NLP for under-resourced language pairs.',
+    description: 'Improving NLP for under-resourced language pairs, particularly Indonesian and Southeast Asian languages.',
     tags: ['Multilingual NLP', 'Low-Resource'],
     repo: 'https://github.com/faizghifari/babybabellm-gptbert',
   },

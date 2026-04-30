@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Placeholder tags — these will be replaced with real tags collected from MDX frontmatter later.
+const placeholderTags = [
+  'All',
+  'NLP',
+  'LLMs',
+  'Research',
+  'Tutorial',
+  'Thoughts',
+];
+
+// No posts yet. When MDX content collection is wired up, replace this with:
+//   const posts = Astro.content.collection('blog').where(...)
+// For now, we render an empty state.
+const posts: Array<Record<string, never>> = [];
+---
+
+<BaseLayout
+  title="Blog — Faiz Ghifari Haznitrama"
+  description="Blog posts by Faiz Ghifari Haznitrama on NLP, LLMs, research, and more."
+>
+  <!-- Hero / Header -->
+  <section class="section">
+    <div class="container-narrow">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+        Blog
+      </h1>
+      <p class="text-gray-600 dark:text-gray-400 text-lg mb-8">
+        Notes, thoughts, and write-ups on NLP, LLMs, and research life.
+      </p>
+
+      <!-- Search bar (search-ready layout) -->
+      <div class="relative mb-6">
+        <svg
+          class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </svg>
+        <input
+          type="text"
+          id="blog-search"
+          placeholder="Search posts..."
+          class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
+        />
+      </div>
+
+      <!-- Tag filters -->
+      <div class="flex flex-wrap gap-2 mb-8" id="tag-filters">
+        {placeholderTags.map((tag) => (
+          <button
+            type="button"
+            data-tag={tag}
+            class={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+              tag === 'All'
+                ? 'bg-indigo-600 text-white dark:bg-indigo-500'
+                : 'bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700'
+            }`}
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Posts list area -->
+  <section class="section pt-0">
+    <div class="container-narrow">
+      {posts.length === 0 ? (
+        <!-- Empty state -->
+        <div class="card text-center py-16">
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 dark:bg-slate-700 mb-6">
+            <svg
+              class="w-8 h-8 text-gray-400 dark:text-gray-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+              />
+            </svg>
+          </div>
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+            No posts yet
+          </h2>
+          <p class="text-gray-500 dark:text-gray-400 max-w-md mx-auto">
+            The blog is still under construction. Check back soon for write-ups on research, NLP, and more.
+          </p>
+        </div>
+      ) : (
+        <!-- Post cards grid — ready for when MDX content collection is added -->
+        <div class="space-y-6">
+          {/*
+            When MDX posts are available, each post card will look like:
+            <a href="/blog/post-slug" class="card block no-underline group">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                <span class="text-sm text-gray-500 dark:text-gray-400">
+                  {post.date}
+                </span>
+                <div class="flex gap-2">
+                  {post.tags.map(tag => <span class="tag">{tag}</span>)}
+                </div>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors mb-2">
+                {post.title}
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                {post.description}
+              </p>
+            </a>
+          */}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<!-- Client-side tag filter + search script (ready for future content) -->
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const searchInput = document.getElementById('blog-search');
+    const tagButtons = document.querySelectorAll('#tag-filters button');
+    const postCards = document.querySelectorAll('.space-y-6 > a');
+
+    let activeTag = 'All';
+
+    // Tag filter click handler
+    tagButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const tag = btn.getAttribute('data-tag');
+        if (!tag) return;
+        activeTag = tag;
+
+        // Update button styles
+        tagButtons.forEach((b) => {
+          const bTag = b.getAttribute('data-tag');
+          if (bTag === tag) {
+            b.className = 'px-3 py-1.5 rounded-full text-sm font-medium transition-colors bg-indigo-600 text-white dark:bg-indigo-500';
+          } else {
+            b.className = 'px-3 py-1.5 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700';
+          }
+        });
+
+        filterPosts();
+      });
+    });
+
+    // Search input handler
+    if (searchInput) {
+      searchInput.addEventListener('input', filterPosts);
+    }
+
+    function filterPosts() {
+      const query = searchInput?.value.toLowerCase().trim() ?? '';
+
+      postCards.forEach((card) => {
+        const text = card.textContent.toLowerCase();
+        const postTags = Array.from(card.querySelectorAll('.tag')).map(
+          (t) => t.textContent.trim()
+        );
+
+        const matchesTag = activeTag === 'All' || postTags.includes(activeTag);
+        const matchesSearch = !query || text.includes(query);
+
+        card.style.display = matchesTag && matchesSearch ? '' : 'none';
+      });
+    }
+  });
+</script>

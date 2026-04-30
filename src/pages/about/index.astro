@@ -1,0 +1,252 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const education = [
+  {
+    year: '2024 — Present',
+    degree: 'Ph.D. in Computer Science',
+    institution: 'Korea Advanced Institute of Science and Technology (KAIST)',
+    detail: 'UILab — Research in multilingual NLP, reasoning under uncertainty, and human-centered AI.',
+  },
+  {
+    year: '2018 — 2022',
+    degree: 'B.Sc. in Informatics',
+    institution: 'Bandung Institute of Technology (ITB)',
+    detail: 'Studied computer science with a focus on artificial intelligence and natural language processing.',
+  },
+];
+
+const researchInterests = [
+  {
+    title: 'Multilingual NLP',
+    description: 'Building language technologies that work well across diverse languages, especially low-resource ones. Bridging the gap between high-resource and under-resolved linguistic communities.',
+    icon: '🌍',
+  },
+  {
+    title: 'Reasoning Under Uncertainty',
+    description: 'Developing models that can reason effectively when information is incomplete, ambiguous, or noisy — closer to how humans actually think.',
+    icon: '🧠',
+  },
+  {
+    title: 'Human-Centered AI',
+    description: 'Designing AI systems that are transparent, accountable, and genuinely useful to the people they serve. Technology should empower, not replace.',
+    icon: '🤝',
+  },
+  {
+    title: 'Machine Translation',
+    description: 'Improving automatic translation quality for under-resolved language pairs, making cross-lingual communication more accessible and equitable.',
+    icon: '🔄',
+  },
+];
+
+const skills = [
+  'Python', 'PyTorch', 'Transformers (Hugging Face)', 'LLMs',
+  'NLP', 'Machine Translation', 'Multilingual Models',
+  'Research Writing', 'LaTeX', 'Git', 'Linux',
+  'Data Analysis', 'Experimental Design',
+];
+
+const languages = [
+  { name: 'Indonesian', level: 'Native' },
+  { name: 'English', level: 'Fluent' },
+  { name: 'Korean', level: 'Intermediate' },
+];
+---
+
+<BaseLayout
+  title="About Me — Faiz Ghifari Haznitrama"
+  description="Learn more about Faiz Ghifari Haznitrama — background, education, research interests, and skills."
+>
+  <!-- Hero / Intro Section -->
+  <section class="section">
+    <div class="container-narrow">
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
+        <!-- Profile Photo -->
+        <div class="flex-shrink-0">
+          <img
+            src="/profile-square.jpg"
+            alt="Faiz Ghifari Haznitrama"
+            class="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover border-4 border-white dark:border-slate-800 shadow-lg"
+            loading="eager"
+          />
+        </div>
+
+        <!-- Bio -->
+        <div class="flex-1 text-center md:text-left">
+          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+            Hi, I'm Faiz 👋
+          </h1>
+          <p class="text-lg text-indigo-600 dark:text-indigo-400 font-medium mb-4">
+            Ph.D. Student at UILab, KAIST
+          </p>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            I'm an Indonesian researcher currently based in Daejeon, South Korea, pursuing my doctorate at the
+            <span class="font-medium">Korea Advanced Institute of Science and Technology (KAIST)</span>.
+            I work in the <span class="font-medium">UILab</span>, where I explore how language models can better
+            understand, reason, and communicate across diverse linguistic and cultural contexts.
+          </p>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            My journey into NLP started with a fascination for how language shapes the way we think and connect
+            with each other. Growing up in Indonesia — a country with over 700 living languages — I saw firsthand
+            how technology can either bridge or widen gaps between communities. That experience drives my research
+            toward making AI more inclusive and accessible for everyone, not just speakers of high-resource languages.
+          </p>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+            When I'm not running experiments or writing papers, you'll find me exploring the food scene in Daejeon,
+            reading sci-fi, or catching up on the latest AI papers over a cup of coffee.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Timeline -->
+  <section class="section bg-gray-50 dark:bg-slate-800/50 transition-colors">
+    <div class="container-narrow">
+      <h2 class="section-title">Education</h2>
+      <div class="relative">
+        {/* Vertical line */}
+        <div class="absolute left-[15px] md:left-0 top-0 bottom-0 w-px bg-gray-200 dark:bg-slate-700 hidden md:block" />
+
+        {education.map((item, i) => (
+          <div class="relative flex gap-6 pb-10 last:pb-0">
+            {/* Dot */}
+            <div class="hidden md:flex flex-col items-center">
+              <div class="timeline-dot mt-1.5" />
+            </div>
+
+            {/* Mobile dot — inline */}
+            <div class="md:hidden flex-shrink-0">
+              <div class="timeline-dot mt-1.5" />
+            </div>
+
+            {/* Content */}
+            <div class="flex-1">
+              <div class="card">
+                <span class="tag mb-2 inline-block">{item.year}</span>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{item.degree}</h3>
+                <p class="text-indigo-600 dark:text-indigo-400 font-medium text-sm mb-2">{item.institution}</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{item.detail}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Interests -->
+  <section class="section">
+    <div class="container-wide">
+      <h2 class="section-title text-center">Research Interests</h2>
+      <p class="text-center text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
+        My work sits at the intersection of language, reasoning, and human values — building AI systems that are
+        more capable, trustworthy, and inclusive.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {researchInterests.map(item => (
+          <div class="card">
+            <div class="flex items-start gap-4">
+              <div class="text-3xl flex-shrink-0">{item.icon}</div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{item.title}</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{item.description}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills & Languages -->
+  <section class="section bg-gray-50 dark:bg-slate-800/50 transition-colors">
+    <div class="container-wide">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* Technical Skills */}
+        <div>
+          <h2 class="section-title">Skills & Technologies</h2>
+          <div class="flex flex-wrap gap-2">
+            {skills.map(skill => (
+              <span class="tag">{skill}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* Languages */}
+        <div>
+          <h2 class="section-title">Languages</h2>
+          <div class="space-y-4">
+            {languages.map(lang => (
+              <div class="flex items-center justify-between">
+                <span class="text-gray-700 dark:text-gray-300 font-medium">{lang.name}</span>
+                <span class="tag">{lang.level}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section">
+    <div class="container-narrow">
+      <h2 class="section-title text-center">Get In Touch</h2>
+      <p class="text-center text-gray-600 dark:text-gray-400 mb-10 max-w-xl mx-auto">
+        I'm always open to research collaborations, interesting conversations, and new opportunities.
+        Feel free to reach out!
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+        <a
+          href="mailto:haznitrama@kaist.ac.kr"
+          class="card flex items-center gap-4 no-underline group"
+        >
+          <div class="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-0.5">KAIST Email</p>
+            <p class="text-sm font-medium text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+              haznitrama@kaist.ac.kr
+            </p>
+          </div>
+        </a>
+
+        <a
+          href="mailto:faiz.haznitrama@gmail.com"
+          class="card flex items-center gap-4 no-underline group"
+        >
+          <div class="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Personal Email</p>
+            <p class="text-sm font-medium text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+              faiz.haznitrama@gmail.com
+            </p>
+          </div>
+        </a>
+
+        <div class="card flex items-center gap-4 sm:col-span-2">
+          <div class="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Location</p>
+            <p class="text-sm font-medium text-gray-900 dark:text-white">
+              Daejeon, South Korea
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

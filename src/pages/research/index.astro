@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+interface Paper {
+  title: string;
+  authors: string;
+  venue: string;
+  year: number;
+  abstract: string;
+  links: Record<string, string>;
+}
+
+interface OngoingItem {
+  title: string;
+  description: string;
+  status: string;
+  tags: string[];
+  repo?: string;
+}
+
+const publications: Paper[] = [
+  {
+    title: 'Placeholder: Your First Paper',
+    authors: 'Faiz Ghifari Haznitrama, Co-Author One, Co-Author Two',
+    venue: 'ACL 2025',
+    year: 2025,
+    abstract: 'This is a placeholder. Papers will be auto-imported from Google Scholar, arXiv, ACL Anthology, OpenReview, DBLP, ORCID, and Semantic Scholar.',
+    links: { pdf: '#', arxiv: '#', acl: '#', github: '#' },
+  },
+];
+
+const preprints: Paper[] = [
+  {
+    title: 'Placeholder: Working Paper',
+    authors: 'Faiz Ghifari Haznitrama et al.',
+    venue: 'arXiv preprint',
+    year: 2026,
+    abstract: 'This section will hold preprints and working papers not yet peer-reviewed.',
+    links: { pdf: '#', arxiv: '#', github: '#' },
+  },
+];
+
+const ongoing: OngoingItem[] = [
+  {
+    title: 'Interpreter-as-Agent MT Evaluation',
+    description: 'Developing frameworks for evaluating machine translation quality using interpreter-agent paradigms.',
+    status: 'In Progress',
+    tags: ['Machine Translation', 'LLM Evaluation'],
+    repo: 'https://github.com/faizghifari/interpreter-agent-eval',
+  },
+  {
+    title: 'Multilingual NLP for Low-Resource Languages',
+    description: 'Exploring approaches to improve NLP performance for under-resourced language pairs, particularly Indonesian and Southeast Asian languages.',
+    status: 'In Progress',
+    tags: ['Multilingual NLP', 'Low-Resource'],
+    repo: 'https://github.com/faizghifari/babybabellm-gptbert',
+  },
+  {
+    title: 'Reasoning Under Uncertainty in LLMs',
+    description: 'Investigating how large language models handle uncertain or ambiguous information during reasoning tasks.',
+    status: 'In Progress',
+    tags: ['Reasoning', 'LLMs', 'Uncertainty'],
+  },
+];
+---
+
+<BaseLayout
+  title="Research — Faiz Ghifari Haznitrama"
+  description="Research publications, preprints, and ongoing work by Faiz Ghifari Haznitrama at UILab, KAIST."
+>
+  <section class="section">
+    <div class="container-narrow">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">Research</h1>
+      <p class="text-gray-600 dark:text-gray-400 mb-8">Publications, preprints, and ongoing research projects.</p>
+
+      <!-- Tabs -->
+      <div class="flex gap-1 mb-8 border-b border-gray-200 dark:border-slate-700" id="tabs">
+        <button class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-indigo-600 dark:border-indigo-400 text-indigo-600 dark:text-indigo-400 transition-colors" data-tab="publications">
+          Publications
+        </button>
+        <button class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors" data-tab="preprints">
+          Preprints
+        </button>
+        <button class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors" data-tab="ongoing">
+          Ongoing
+        </button>
+      </div>
+
+      <!-- Publications Tab -->
+      <div id="tab-publications" class="tab-content">
+        <div class="mb-4 p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg border border-indigo-200 dark:border-indigo-800">
+          <p class="text-sm text-indigo-700 dark:text-indigo-300">
+            <strong>Auto-import coming soon.</strong> Papers will be automatically imported from Google Scholar, arXiv, ACL Anthology, OpenReview, DBLP, ORCID, and Semantic Scholar with deduplication.
+          </p>
+        </div>
+        {publications.map((paper: Paper) => (
+          <div class="card mb-4">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">{paper.title}</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{paper.authors}</p>
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="tag">{paper.venue}</span>
+              <span class="tag">{paper.year}</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">{paper.abstract}</p>
+            <div class="flex flex-wrap gap-2">
+              {Object.entries(paper.links).map(([key, url]) => (
+                <a href={url} target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
+                  {key.charAt(0).toUpperCase() + key.slice(1)} &rarr;
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Preprints Tab -->
+      <div id="tab-preprints" class="tab-content hidden">
+        <div class="mb-4 p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg border border-indigo-200 dark:border-indigo-800">
+          <p class="text-sm text-indigo-700 dark:text-indigo-300">
+            <strong>Auto-import coming soon.</strong> Preprints will be pulled from arXiv and Semantic Scholar.
+          </p>
+        </div>
+        {preprints.map((paper: Paper) => (
+          <div class="card mb-4">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">{paper.title}</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{paper.authors}</p>
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="tag">{paper.venue}</span>
+              <span class="tag">{paper.year}</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">{paper.abstract}</p>
+            <div class="flex flex-wrap gap-2">
+              {Object.entries(paper.links).map(([key, url]) => (
+                <a href={url} target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
+                  {key.charAt(0).toUpperCase() + key.slice(1)} &rarr;
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Ongoing Tab -->
+      <div id="tab-ongoing" class="tab-content hidden">
+        {ongoing.map((item: OngoingItem) => (
+          <div class="card mb-4">
+            <div class="flex items-start justify-between mb-2">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h3>
+              <span class="tag">{item.status}</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">{item.description}</p>
+            <div class="flex flex-wrap gap-2 mb-3">
+              {item.tags.map((tag: string) => <span class="tag">{tag}</span>)}
+            </div>
+            {item.repo && (
+              <a href={item.repo} target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
+                View Repository &rarr;
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const contents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.tab;
+
+          tabs.forEach(t => {
+            t.classList.remove('border-indigo-600', 'dark:border-indigo-400', 'text-indigo-600', 'dark:text-indigo-400');
+            t.classList.add('border-transparent', 'text-gray-500', 'dark:text-gray-400');
+          });
+          tab.classList.remove('border-transparent', 'text-gray-500', 'dark:text-gray-400');
+          tab.classList.add('border-indigo-600', 'dark:border-indigo-400', 'text-indigo-600', 'dark:text-indigo-400');
+
+          contents.forEach(c => c.classList.add('hidden'));
+          document.getElementById(`tab-${target}`)?.classList.remove('hidden');
+        });
+      });
+    });
+  </script>
+</BaseLayout>

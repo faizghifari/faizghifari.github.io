@@ -2,21 +2,38 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 
-const highlights = [
+const recentPapers = [
   {
-    title: 'Published at ACL 2025',
-    description: 'Work on multilingual reasoning and language understanding accepted at the Association for Computational Linguistics Annual Meeting.',
-    icon: '📝',
+    title: 'Your Latest Paper Title Here',
+    authors: 'Faiz Ghifari Haznitrama, et al.',
+    venue: 'ACL 2025',
+    year: 2025,
+    links: { pdf: '#', arxiv: '#', acl: '#' },
+  },
+];
+
+const recentPreprints = [
+  {
+    title: 'Working Paper Title Here',
+    authors: 'Faiz Ghifari Haznitrama, et al.',
+    venue: 'arXiv',
+    year: 2026,
+    links: { pdf: '#', arxiv: '#', github: '#' },
+  },
+];
+
+const ongoingResearch = [
+  {
+    title: 'Interpreter-as-Agent MT Evaluation',
+    description: 'Evaluating machine translation quality using interpreter-agent paradigms.',
+    tags: ['Machine Translation', 'LLM Evaluation'],
+    repo: 'https://github.com/faizghifari/interpreter-agent-eval',
   },
   {
-    title: 'Research at UILab, KAIST',
-    description: 'Focusing on human-centered AI, multilingual NLP, and reasoning under uncertainty.',
-    icon: '🔬',
-  },
-  {
-    title: 'Ph.D. Student at KAIST',
-    description: 'Pursuing a doctorate in Computer Science at Korea Advanced Institute of Science and Technology.',
-    icon: '🎓',
+    title: 'Multilingual NLP for Low-Resource Languages',
+    description: 'Improving NLP for under-resourced language pairs.',
+    tags: ['Multilingual NLP', 'Low-Resource'],
+    repo: 'https://github.com/faizghifari/babybabellm-gptbert',
   },
 ];
 ---
@@ -25,91 +42,134 @@ const highlights = [
   title="Faiz Ghifari Haznitrama — Ph.D. Student at KAIST"
   description="Personal portfolio of Faiz Ghifari Haznitrama, Ph.D. student at UILab, KAIST. Researcher in multilingual NLP, reasoning, and human-centered AI."
 >
-  <!-- Hero Section -->
-  <section class="section">
+  <!-- Header -->
+  <section class="section pb-8">
     <div class="container-narrow">
-      <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
-        <!-- Profile Photo -->
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
         <div class="flex-shrink-0">
           <img
             src="/profile-square.jpg"
             alt="Faiz Ghifari Haznitrama"
-            class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-white dark:border-slate-800 shadow-lg"
+            class="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover border-2 border-gray-200 dark:border-slate-700"
             loading="eager"
           />
         </div>
-
-        <!-- Info -->
         <div class="flex-1 text-center md:text-left">
-          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1">
             Faiz Ghifari Haznitrama
           </h1>
-          <p class="text-lg text-indigo-600 dark:text-indigo-400 font-medium mb-1">
-            Ph.D. Student at <span class="no-underline">UILab</span>, KAIST
+          <p class="text-base text-indigo-600 dark:text-indigo-400 font-medium mb-1">
+            Ph.D. Student at <a href="https://uila.kaist.ac.kr/" target="_blank" rel="noopener noreferrer" class="no-underline">UILab</a>, KAIST
           </p>
-          <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
-            Daejeon, South Korea
+          <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">
+            Daejeon, South Korea &middot; Multilingual NLP &middot; Reasoning &middot; Human-Centered AI
           </p>
-
-          <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-xl mx-auto md:mx-0 text-balance leading-relaxed">
-            I'm a Ph.D. candidate at the <span class="font-medium">UILab</span>, KAIST, working on
-            multilingual natural language processing, reasoning under uncertainty, and human-centered
-            AI. My research explores how language models can better understand, reason, and communicate
-            across diverse linguistic and cultural contexts.
-          </p>
-
-          <!-- Social Links -->
-          <div class="flex justify-center md:justify-start mb-6">
+          <div class="flex justify-center md:justify-start">
             <SocialLinks />
-          </div>
-
-          <!-- CTA Buttons -->
-          <div class="flex flex-wrap items-center justify-center md:justify-start gap-3">
-            <a
-              href="/about"
-              class="btn-primary"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-              About Me
-            </a>
-            <a
-              href="/research"
-              class="btn-outline"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-              View Research
-            </a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Highlights Section -->
-  <section class="section bg-gray-50 dark:bg-slate-800/50 transition-colors">
-    <div class="container-wide">
-      <h2 class="section-title text-center">Highlights</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {highlights.map(item => (
+  <!-- Recent Publications -->
+  <section class="section pt-4">
+    <div class="container-narrow">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Recent Publications</h2>
+        <a href="/research" class="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
+          View all &rarr;
+        </a>
+      </div>
+      <div class="space-y-4">
+        {recentPapers.map((paper) => (
           <div class="card">
-            <div class="text-3xl mb-3">{item.icon}</div>
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{item.title}</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{item.description}</p>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-1">{paper.title}</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{paper.authors}</p>
+            <div class="flex flex-wrap items-center gap-2 mb-2">
+              <span class="tag">{paper.venue}</span>
+              <span class="tag">{paper.year}</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {Object.entries(paper.links).map(([key, url]) => (
+                <a href={url} target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
+                  {key}
+                </a>
+              ))}
+            </div>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Quick Links Section -->
-  <section class="section">
+  <!-- Preprints -->
+  <section class="section pt-4">
     <div class="container-narrow">
-      <h2 class="section-title text-center">Academic Profiles</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Preprints</h2>
+        <a href="/research" class="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
+          View all &rarr;
+        </a>
+      </div>
+      <div class="space-y-4">
+        {recentPreprints.map((paper) => (
+          <div class="card">
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-1">{paper.title}</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{paper.authors}</p>
+            <div class="flex flex-wrap items-center gap-2 mb-2">
+              <span class="tag">{paper.venue}</span>
+              <span class="tag">{paper.year}</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {Object.entries(paper.links).map(([key, url]) => (
+                <a href={url} target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
+                  {key}
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Ongoing Research -->
+  <section class="section pt-4">
+    <div class="container-narrow">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Ongoing Research</h2>
+        <a href="/research" class="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
+          View all &rarr;
+        </a>
+      </div>
+      <div class="space-y-4">
+        {ongoingResearch.map((item) => (
+          <div class="card">
+            <div class="flex items-start justify-between mb-2">
+              <h3 class="text-base font-semibold text-gray-900 dark:text-white">{item.title}</h3>
+              <span class="tag">In Progress</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">{item.description}</p>
+            <div class="flex flex-wrap gap-2 mb-2">
+              {item.tags.map((tag: string) => <span class="tag">{tag}</span>)}
+            </div>
+            {item.repo && (
+              <a href={item.repo} target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
+                View Repository &rarr;
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Academic Profiles -->
+  <section class="section pt-4">
+    <div class="container-narrow">
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">Academic Profiles</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
         {[
           { name: 'Google Scholar', url: 'https://scholar.google.com/citations?user=ZH3qXdUAAAAJ&hl=en&authuser=1' },
           { name: 'Semantic Scholar', url: 'https://www.semanticscholar.org/author/Faiz-Ghifari-Haznitrama/2287841290' },
@@ -122,9 +182,9 @@ const highlights = [
             href={profile.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="card flex items-center gap-3 no-underline group"
+            class="card flex items-center gap-2 py-3 px-4 no-underline group"
           >
-            <svg class="w-5 h-5 text-gray-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 text-gray-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
             <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">

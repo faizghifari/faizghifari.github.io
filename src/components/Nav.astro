@@ -1,7 +1,7 @@
 ---
 import DarkModeToggle from './DarkModeToggle.astro';
 
-const currentPath = Astro.currentURL?.pathname ?? '/';
+const currentPath = Astro.self.url ? new URL(Astro.self.url).pathname : '/';
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },

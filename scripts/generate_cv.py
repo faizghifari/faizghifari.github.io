@@ -85,7 +85,7 @@ EXPERIENCE = [
         "org": "E-Life Solutions Sdn. Bhd.",
         "location": "Malaysia",
         "period": "May 2018 - Aug 2018",
-        "description": "Design system architecture for Smart Hospital Asset Management System (SHAMS). Develop server using Node.js, provide communication with hospital embedded devices. Build Qur'an verse search related to Indonesian text by measuring similarity.",
+        "description": "Design system architecture for Smart Hospital Asset Management System (SHAMS). Develop server using Node.js, provide communication with hospital embedded devices.",
     },
 ]
 
@@ -149,11 +149,20 @@ PREPRINTS = [
         "venue": "arXiv Preprint",
         "year": 2026,
     },
+]
+
+THESES = [
     {
         "title": "Addressing Hallucination in Abstractive Dialogue Summarization via Span Identification and Correction",
         "authors": "Faiz Ghifari Haznitrama, Ho-Jin Choi, Chin-Wan Chung",
-        "venue": "Master's Thesis / OpenReview",
+        "venue": "Master's Thesis, KAIST",
         "year": 2023,
+    },
+    {
+        "title": "Indonesian Qur'an Verse Extractor",
+        "authors": "Faiz Ghifari Haznitrama",
+        "venue": "Bachelor's Thesis, ITB",
+        "year": 2019,
     },
 ]
 
@@ -368,6 +377,14 @@ def build_long_cv(story: list):
     if PREPRINTS:
         story.extend(section_header("Preprints"))
         for pub in PREPRINTS:
+            story.append(Paragraph(f"<b>{pub['title']}</b>", STYLE_PUB_TITLE))
+            story.append(Paragraph(pub["authors"], STYLE_PUB_AUTHORS))
+            story.append(Paragraph(pub["venue"], STYLE_PUB_VENUE))
+
+    # Theses
+    if THESES:
+        story.extend(section_header("Theses"))
+        for pub in THESES:
             story.append(Paragraph(f"<b>{pub['title']}</b>", STYLE_PUB_TITLE))
             story.append(Paragraph(pub["authors"], STYLE_PUB_AUTHORS))
             story.append(Paragraph(pub["venue"], STYLE_PUB_VENUE))

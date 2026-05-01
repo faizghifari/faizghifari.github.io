@@ -45,33 +45,47 @@ EDUCATION = [
         "detail": "UILab -- Research in multilingual NLP, reasoning under uncertainty, and human-centered AI.",
     },
     {
-        "period": "2022 - 2023",
+        "period": "2021 - 2023",
         "degree": "M.Sc. in Computer Science",
         "institution": "Korea Advanced Institute of Science and Technology (KAIST)",
         "detail": "Master of Computer Science at KAIST, School of Computing.",
     },
     {
-        "period": "2018 - 2022",
+        "period": "2015 - 2019",
         "degree": "B.Sc. in Informatics",
-        "institution": "Bandung Institute of Technology (ITB)",
+        "institution": "Institut Teknologi Bandung (ITB)",
         "detail": "Studied computer science with a focus on artificial intelligence and natural language processing.",
     },
 ]
 
 EXPERIENCE = [
     {
-        "role": "Ph.D. Student",
+        "role": "Lead Researcher",
+        "org": "PT. Feedloop Global Teknologi / Feedloop.ai",
+        "location": "Indonesia",
+        "period": "Dec 2023 - Mar 2026",
+        "description": "Lead the research and development team of Feedloop. Improve the current RAG-based pipeline with an increase in performance of up to 20%. Research in making our own LLM, VLM, TTS, AutoML pipeline, and LLM-based apps.",
+    },
+    {
+        "role": "Student Researcher",
         "org": "UILab, KAIST",
         "location": "Daejeon, South Korea",
-        "period": "2024 - Present",
+        "period": "Feb 2024 - Present",
         "description": "Conducting research on multilingual NLP, reasoning under uncertainty, and human-centered AI. Focusing on how language models can better understand and communicate across diverse linguistic contexts.",
     },
     {
-        "role": "Researcher / Developer",
-        "org": "Independent & Collaborative Projects",
-        "location": "Remote",
-        "period": "2022 - 2024",
-        "description": "Worked on various NLP and AI projects including dialogue summarization, hallucination reduction, multilingual benchmarks, and RAG applications.",
+        "role": "NLP Engineer",
+        "org": "PT. Prosa Solusi Cerdas / Prosa.ai",
+        "location": "Indonesia",
+        "period": "Sep 2019 - Aug 2021",
+        "description": "Develop and maintain NLP-based applications/APIs. Conduct experiments in NLP (sentiment analysis, plagiarism detection, info extraction). Create and optimize resource-efficient pipeline for ML model in production.",
+    },
+    {
+        "role": "Software Engineer Intern",
+        "org": "E-Life Solutions Sdn. Bhd.",
+        "location": "Malaysia",
+        "period": "May 2018 - Aug 2018",
+        "description": "Design system architecture for Smart Hospital Asset Management System (SHAMS). Develop server using Node.js, provide communication with hospital embedded devices. Build Qur'an verse search related to Indonesian text by measuring similarity.",
     },
 ]
 
@@ -98,32 +112,32 @@ PUBLICATIONS = [
     },
     {
         "title": "BabyBabelLM: A Multilingual Benchmark of Developmentally Plausible Training Data",
-        "authors": "Jaap Jumelet, Abdellah Fourtassi, Akari Haga, Bastian Bunzeck, et al.",
+        "authors": "Jaap Jumelet, Abdellah Fourtassi, Akari Haga, Bastian Bunzeck, Bhargav Shandilya, Diana Galvan-Sosa, Faiz Ghifari Haznitrama, et al.",
         "venue": "EACL 2026 Main Conference",
         "year": 2026,
     },
     {
         "title": "Survey of Cultural Awareness in Language Models: Text and Beyond",
-        "authors": "Siddhesh Pawar, Junyeong Park, Jiho Jin, Arnav Arora, et al.",
+        "authors": "Siddhesh Pawar, Junyeong Park, Jiho Jin, Arnav Arora, Junho Myung, Srishti Yadav, Faiz Ghifari Haznitrama, Inhwa Song, Alice Oh, Isabelle Augenstein",
         "venue": "Computational Linguistics Journal",
         "year": 2025,
     },
     {
-        "title": "Addressing Hallucination in Abstractive Dialogue Summarization via Span Identification and Correction",
-        "authors": "Faiz Ghifari Haznitrama, et al.",
-        "venue": "EMNLP 2024 Main Conference",
-        "year": 2024,
+        "title": "Methodologies and Their Comparison in Complex Compound Aspect-Based Sentiment Analysis: A Survey",
+        "authors": "Faiz Ghifari Haznitrama, Ho-Jin Choi, Chin-Wan Chung",
+        "venue": "AI Open",
+        "year": 2025,
     },
     {
         "title": "Can LLM Generate Culturally Relevant Commonsense QA Data? Case Study in Indonesian and Sundanese",
         "authors": "Rifki Afina Putri, Faiz Ghifari Haznitrama, Dea Adhista, Alice Oh",
-        "venue": "C3NLP @ ACL 2024",
+        "venue": "EMNLP 2024 Main Conference",
         "year": 2024,
     },
     {
-        "title": "Methodologies and Their Comparison in Complex Compound Aspect-Based Sentiment Analysis: A Survey",
+        "title": "Comparative Analysis of Recent Studies on Aspect-Based Sentiment Analysis",
         "authors": "Faiz Ghifari Haznitrama, Ho-Jin Choi, Chin-Wan Chung",
-        "venue": "AI Open Journal",
+        "venue": "Annual Conference of KIPS",
         "year": 2023,
     },
 ]
@@ -134,6 +148,12 @@ PREPRINTS = [
         "authors": "Faiz Ghifari Haznitrama, Faeyza Rishad Ardi, Alice Oh",
         "venue": "arXiv Preprint",
         "year": 2026,
+    },
+    {
+        "title": "Addressing Hallucination in Abstractive Dialogue Summarization via Span Identification and Correction",
+        "authors": "Faiz Ghifari Haznitrama, Ho-Jin Choi, Chin-Wan Chung",
+        "venue": "Master's Thesis / OpenReview",
+        "year": 2023,
     },
 ]
 

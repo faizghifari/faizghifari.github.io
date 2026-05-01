@@ -9,15 +9,15 @@ const education = [
     detail: 'UILab — Research in multilingual NLP, reasoning under uncertainty, and human-centered AI.',
   },
   {
-    year: '2022 — 2023',
+    year: '2021 — 2023',
     degree: 'M.Sc. in Computer Science',
     institution: 'Korea Advanced Institute of Science and Technology (KAIST)',
     detail: 'Master of Computer Science at KAIST, School of Computing.',
   },
   {
-    year: '2018 — 2022',
+    year: '2015 — 2019',
     degree: 'B.Sc. in Informatics',
-    institution: 'Bandung Institute of Technology (ITB)',
+    institution: 'Institut Teknologi Bandung (ITB)',
     detail: 'Studied computer science with a focus on artificial intelligence and natural language processing.',
   },
 ];
@@ -43,19 +43,6 @@ const researchInterests = [
     description: 'Improving automatic translation quality for under-resolved language pairs, making cross-lingual communication more accessible and equitable.',
     icon: '🔄',
   },
-];
-
-const skills = [
-  'Python', 'PyTorch', 'Transformers (Hugging Face)', 'LLMs',
-  'NLP', 'Machine Translation', 'Multilingual Models',
-  'Research Writing', 'LaTeX', 'Git', 'Linux',
-  'Data Analysis', 'Experimental Design',
-];
-
-const languages = [
-  { name: 'Indonesian', level: 'Native' },
-  { name: 'English', level: 'Fluent' },
-  { name: 'Korean', level: 'Intermediate' },
 ];
 ---
 
@@ -161,36 +148,6 @@ const languages = [
             </div>
           </div>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills & Languages -->
-  <section class="section bg-gray-50 dark:bg-slate-800/50 transition-colors">
-    <div class="container-wide">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* Technical Skills */}
-        <div>
-          <h2 class="section-title">Skills & Technologies</h2>
-          <div class="flex flex-wrap gap-2">
-            {skills.map(skill => (
-              <span class="tag">{skill}</span>
-            ))}
-          </div>
-        </div>
-
-        {/* Languages */}
-        <div>
-          <h2 class="section-title">Languages</h2>
-          <div class="space-y-4">
-            {languages.map(lang => (
-              <div class="flex items-center justify-between">
-                <span class="text-gray-700 dark:text-gray-300 font-medium">{lang.name}</span>
-                <span class="tag">{lang.level}</span>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   </section>

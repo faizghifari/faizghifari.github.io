@@ -40,6 +40,12 @@
   a.no-underline {
     text-decoration: none !important;
   }
+
+  /* Buttons inside <a> tags should not inherit link text color */
+  a .btn-primary,
+  a.btn-primary {
+    color: #ffffff !important;
+  }
 }
 
 @layer components {

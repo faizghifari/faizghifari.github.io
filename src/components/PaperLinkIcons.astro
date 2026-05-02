@@ -52,7 +52,7 @@ const iconMap: Record<string, { label: string; svg: string }> = {
         class="inline-flex items-center gap-1 text-gray-500 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors no-underline"
         title={iconData.label}
       >
-        <span class="inline-flex w-4 h-4" set:html={iconData.svg} />
+        <span class="inline-flex items-center justify-center w-4 h-4" set:html={iconData.svg} />
         <span class="text-xs font-medium">{iconData.label}</span>
       </a>
     );

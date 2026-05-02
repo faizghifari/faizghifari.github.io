@@ -26,9 +26,6 @@ const recentPapers = [
     year: 2024,
     links: { pdf: 'https://arxiv.org/pdf/2402.17302', arxiv: 'https://arxiv.org/abs/2402.17302', github: 'https://github.com/faizghifari/id-csqa' },
   },
-];
-
-const recentPreprints = [
   {
     title: 'A Neuropsychologically Grounded Evaluation of LLM Cognitive Abilities',
     authors: 'Faiz Ghifari Haznitrama, Faeyza Rishad Ardi, Alice Oh',
@@ -37,6 +34,8 @@ const recentPreprints = [
     links: { pdf: 'https://arxiv.org/pdf/2603.02540', arxiv: 'https://arxiv.org/abs/2603.02540' },
   },
 ];
+
+const recentPreprints: { title: string; authors: string; venue: string; year: number; links: Record<string, string> }[] = [];
 
 const ongoingResearch = [
   {
@@ -59,28 +58,28 @@ const ongoingResearch = [
   description="Personal portfolio of Faiz Ghifari Haznitrama, Ph.D. student at UILab, KAIST. Researcher in multilingual NLP, reasoning, and human-centered AI."
 >
   <!-- Header -->
-  <section class="section pb-6">
+  <section class="section pb-2">
     <div class="container-narrow">
-      <div class="flex flex-col md:flex-row items-center md:items-start gap-5 md:gap-8">
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-5">
         <div class="flex-shrink-0">
           <img
             src="/profile-square.jpg"
             alt="Faiz Ghifari Haznitrama"
-            class="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover border-2 border-gray-200 dark:border-slate-700"
+            class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-2 border-gray-200 dark:border-slate-700"
             loading="eager"
           />
         </div>
         <div class="flex-1 text-center md:text-left">
-          <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1">
+          <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-0.5">
             Faiz Ghifari Haznitrama
           </h1>
-          <p class="text-base text-indigo-600 dark:text-indigo-400 font-medium mb-1">
+          <p class="text-base text-indigo-600 dark:text-indigo-400 font-medium mb-0.5">
             Ph.D. Student at <a href="https://uila.kaist.ac.kr/" target="_blank" rel="noopener noreferrer" class="no-underline">UILab</a>, KAIST
           </p>
-          <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+          <p class="text-sm text-gray-500 dark:text-gray-400 mb-1.5">
             Daejeon, South Korea &middot; Multilingual NLP &middot; Reasoning &middot; Human-Centered AI
           </p>
-          <div class="flex flex-col sm:flex-row items-center gap-3 mb-2">
+          <div class="flex justify-center md:justify-start mb-1.5">
             <SocialLinks />
           </div>
           <div class="flex flex-wrap justify-center md:justify-start gap-2">
@@ -103,9 +102,9 @@ const ongoingResearch = [
   </section>
 
   <!-- Recent Publications -->
-  <section class="section pt-4">
+  <section class="section pt-2">
     <div class="container-narrow">
-      <div class="flex items-center justify-between mb-6">
+      <div class="flex items-center justify-between mb-4">
         <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Recent Publications</h2>
         <a href="/research" class="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
           View all &rarr;
@@ -128,9 +127,10 @@ const ongoingResearch = [
   </section>
 
   <!-- Preprints -->
-  <section class="section pt-4">
+  {recentPreprints.length > 0 && (
+  <section class="section pt-2">
     <div class="container-narrow">
-      <div class="flex items-center justify-between mb-6">
+      <div class="flex items-center justify-between mb-4">
         <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Preprints</h2>
         <a href="/research" class="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
           View all &rarr;
@@ -151,11 +151,12 @@ const ongoingResearch = [
       </div>
     </div>
   </section>
+  )}
 
   <!-- Ongoing Research -->
-  <section class="section pt-4">
+  <section class="section pt-2">
     <div class="container-narrow">
-      <div class="flex items-center justify-between mb-6">
+      <div class="flex items-center justify-between mb-4">
         <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Ongoing Research</h2>
         <a href="/research" class="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
           View all &rarr;

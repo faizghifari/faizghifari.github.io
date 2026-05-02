@@ -43,8 +43,14 @@
 
   /* Buttons inside <a> tags should not inherit link text color */
   a .btn-primary,
-  a.btn-primary {
+  a.btn-primary,
+  a.bg-indigo-600 {
     color: #ffffff !important;
+  }
+
+  /* Ensure all text/icons inside button-style anchors stay white */
+  a.bg-indigo-600 svg {
+    stroke: #ffffff !important;
   }
 }
 

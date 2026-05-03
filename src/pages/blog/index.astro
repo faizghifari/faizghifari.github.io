@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogLayout from '../../layouts/BlogLayout.astro';
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
@@ -13,61 +13,110 @@ sortedPosts.forEach(post => {
   post.data.tags.forEach(tag => allTags.add(tag));
 });
 const tags = Array.from(allTags).sort();
+
+// Default cover for posts without one
+const defaultCover = '/cover-default.svg';
 ---
 
-<BaseLayout
+<BlogLayout
   title="Blog — Faiz Ghifari Haznitrama"
   description="Thoughts, research updates, and life notes by Faiz Ghifari Haznitrama."
 >
-  <section class="section">
-    <div class="container-narrow">
-      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">Blog</h1>
-      <p class="text-gray-600 dark:text-gray-400 mb-8">Thoughts, research updates, and life notes.</p>
+  <div class="min-h-screen bg-gray-50 dark:bg-slate-900">
+    <!-- Blog Header -->
+    <header class="relative overflow-hidden bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700">
+      <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%236366f1%22 fill-opacity=%220.4%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+      </div>
+      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
+          Blog
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
+          Thoughts, research updates, and life notes. A space for ideas in progress.
+        </p>
+      </div>
+    </header>
 
-      <!-- Tag Filter -->
-      {tags.length > 0 && (
-        <div class="flex flex-wrap gap-2 mb-8" id="tag-filters">
-          <button class="tag active-tag" data-tag="all">All</button>
-          {tags.map(tag => (
-            <button class="tag" data-tag={tag}>{tag}</button>
-          ))}
+    <!-- Tag Filter -->
+    {tags.length > 0 && (
+      <div class="sticky top-16 z-30 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-b border-gray-200 dark:border-slate-700">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3">
+          <div class="flex flex-wrap gap-2" id="tag-filters">
+            <button class="tag-pill active" data-tag="all">All ({sortedPosts.length})</button>
+            {tags.map(tag => {
+              const count = sortedPosts.filter(p => p.data.tags.includes(tag)).length;
+              return (
+                <button class="tag-pill" data-tag={tag}>{tag} ({count})</button>
+              );
+            })}
+          </div>
         </div>
-      )}
+      </div>
+    )}
 
-      <!-- Posts List -->
-      <div class="space-y-6" id="posts-list">
-        {sortedPosts.map(post => (
-          <a href={`/blog/${post.slug}`} class="card no-underline group block">
-            <div class="flex items-start justify-between mb-2">
-              <h2 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                {post.data.title}
-              </h2>
-              <time datetime={post.data.date.toISOString()} class="text-xs text-gray-400 dark:text-gray-500 flex-shrink-0 ml-4">
-                {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-              </time>
-            </div>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 leading-relaxed">
-              {post.data.description}
-            </p>
-            {post.data.tags.length > 0 && (
-              <div class="flex flex-wrap gap-2">
-                {post.data.tags.map(tag => (
-                  <span class="tag">{tag}</span>
-                ))}
+    <!-- Posts Grid -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8" id="posts-list">
+        {sortedPosts.map(post => {
+          const cover = post.data.cover || defaultCover;
+          const dateStr = post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+          const formatLabel = post.data.format === 'note' ? 'Quick Note' : post.data.format === 'photo' ? 'Photo' : 'Article';
+
+          return (
+            <a href={`/blog/${post.slug}`} class="blog-card group">
+              {/* Cover Image */}
+              <div class="relative overflow-hidden">
+                <img
+                  src={cover}
+                  alt={post.data.title}
+                  class="blog-card-image transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                {/* Format badge */}
+                <div class="absolute top-3 left-3">
+                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-black/50 text-white backdrop-blur-sm">
+                    {formatLabel}
+                  </span>
+                </div>
               </div>
-            )}
-          </a>
-        ))}
+
+              {/* Card Body */}
+              <div class="blog-card-body">
+                <div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-2">
+                  <time datetime={post.data.date.toISOString()}>{dateStr}</time>
+                </div>
+
+                <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-tight">
+                  {post.data.title}
+                </h2>
+
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-3 leading-relaxed">
+                  {post.data.description}
+                </p>
+
+                {post.data.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-1.5">
+                    {post.data.tags.map(tag => (
+                      <span class="tag-pill">{tag}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </a>
+          );
+        })}
       </div>
 
       {sortedPosts.length === 0 && (
-        <div class="text-center py-12 text-gray-400 dark:text-gray-500">
-          <p class="text-lg mb-2">No posts yet</p>
+        <div class="text-center py-16 text-gray-400 dark:text-gray-500">
+          <p class="text-xl mb-2">No posts yet</p>
           <p class="text-sm">Check back soon for updates!</p>
         </div>
       )}
     </div>
-  </section>
+  </div>
 
   <script is:inline>
     document.addEventListener('DOMContentLoaded', () => {
@@ -78,16 +127,14 @@ const tags = Array.from(allTags).sort();
         btn.addEventListener('click', () => {
           const tag = btn.dataset.tag;
 
-          filterBtns.forEach(b => {
-            b.classList.remove('bg-indigo-100', 'dark:bg-indigo-900/40', 'text-indigo-700', 'dark:text-indigo-300');
-          });
-          btn.classList.add('bg-indigo-100', 'dark:bg-indigo-900/40', 'text-indigo-700', 'dark:text-indigo-300');
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
 
           posts.forEach(post => {
-            const postTags = post.querySelectorAll('.tag');
+            const postTags = post.querySelectorAll('.tag-pill');
             const postTagList = Array.from(postTags).map(t => t.textContent);
 
-            if (tag === 'all' || postTagList.includes(tag)) {
+            if (tag === 'all' || postTagList.some(t => t.includes(tag))) {
               post.style.display = '';
             } else {
               post.style.display = 'none';
@@ -97,4 +144,4 @@ const tags = Array.from(allTags).sort();
       });
     });
   </script>
-</BaseLayout>
+</BlogLayout>

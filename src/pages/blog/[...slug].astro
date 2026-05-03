@@ -12,8 +12,17 @@ export async function getStaticPaths({ paginate }) {
 
 const { post } = Astro.props;
 const MDXContent = (await import(`../../content/blog/${post.slug}.mdx`)).default;
+
+const defaultCover = '/cover-default.svg';
+const cover = post.data.cover || defaultCover;
 ---
 
-<MdxPostLayout title={post.data.title} date={post.data.date.toISOString()} tags={post.data.tags}>
+<MdxPostLayout
+  title={post.data.title}
+  date={post.data.date.toISOString()}
+  tags={post.data.tags}
+  cover={cover}
+  format={post.data.format}
+>
   <MDXContent />
 </MdxPostLayout>

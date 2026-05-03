@@ -37,6 +37,27 @@
           "type": "boolean",
           "default": false
         },
+        "cover": {
+          "type": "string"
+        },
+        "coverPosition": {
+          "type": "string",
+          "enum": [
+            "top",
+            "middle",
+            "bottom"
+          ],
+          "default": "top"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "article",
+            "note",
+            "photo"
+          ],
+          "default": "article"
+        },
         "$schema": {
           "type": "string"
         }

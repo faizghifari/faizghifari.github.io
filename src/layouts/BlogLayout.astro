@@ -1,0 +1,247 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Blog by Faiz Ghifari Haznitrama.' } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <slot />
+</BaseLayout>
+
+<style is:global>
+  /* Blog-specific reading progress bar */
+  .reading-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    z-index: 9999;
+    transition: width 0.1s linear;
+    width: 0%;
+  }
+
+  /* Blog typography - serif for long-form reading */
+  .blog-prose {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #374151;
+  }
+
+  .blog-prose p {
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-prose h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: #111827;
+  }
+
+  .blog-prose h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.375rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: #1f2937;
+  }
+
+  .blog-prose blockquote {
+    border-left: 4px solid #6366f1;
+    padding-left: 1.25rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: #6b7280;
+  }
+
+  .blog-prose img {
+    border-radius: 0.75rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .blog-prose a {
+    color: #6366f1;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .blog-prose pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 1.5rem 0;
+  }
+
+  .blog-prose code {
+    background: #f1f5f9;
+    color: #334155;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .blog-prose pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+  }
+
+  /* Dark mode overrides for blog prose */
+  .dark .blog-prose {
+    color: #d1d5db;
+  }
+
+  .dark .blog-prose h2 {
+    color: #f9fafb;
+  }
+
+  .dark .blog-prose h3 {
+    color: #e5e7eb;
+  }
+
+  .dark .blog-prose blockquote {
+    color: #9ca3af;
+    border-left-color: #818cf8;
+  }
+
+  .dark .blog-prose a {
+    color: #818cf8;
+  }
+
+  .dark .blog-prose code {
+    background: #334155;
+    color: #e2e8f0;
+  }
+
+  /* Hero section styles */
+  .post-hero {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .post-hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .post-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%);
+    z-index: 1;
+  }
+
+  .post-hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+
+  /* Blog card styles */
+  .blog-card {
+    display: block;
+    text-decoration: none;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+
+  .dark .blog-card {
+    background: #1e293b;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .dark .blog-card:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+
+  .blog-card-image {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+  }
+
+  .blog-card-body {
+    padding: 1.5rem;
+  }
+
+  /* Tag pill styles */
+  .tag-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: #f3f4f6;
+    color: #4b5563;
+    transition: all 0.2s;
+  }
+
+  .dark .tag-pill {
+    background: #334155;
+    color: #d1d5db;
+  }
+
+  .tag-pill.active {
+    background: #6366f1;
+    color: #ffffff;
+  }
+
+  /* Related posts */
+  .related-post-card {
+    display: block;
+    text-decoration: none;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    background: #f9fafb;
+    transition: background 0.2s;
+  }
+
+  .dark .related-post-card {
+    background: #1e293b;
+  }
+
+  .related-post-card:hover {
+    background: #f3f4f6;
+  }
+
+  .dark .related-post-card:hover {
+    background: #334155;
+  }
+</style>

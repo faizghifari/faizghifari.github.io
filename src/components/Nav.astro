@@ -19,13 +19,8 @@ function isActive(href: string): boolean {
 <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200 dark:border-slate-800 transition-colors">
   <nav class="max-w-5xl mx-auto px-4 sm:px-6">
     <div class="flex items-center justify-between h-16">
-      <!-- Logo / Name -->
-      <a href="/" class="text-lg font-semibold text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors no-underline">
-        Faiz Ghifari
-      </a>
-
-      <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center gap-1">
+      <!-- Desktop Navigation - Centered -->
+      <div class="hidden md:flex items-center justify-center gap-1 flex-1">
         {navLinks.map(link => (
           <a
             href={link.href}
@@ -39,6 +34,13 @@ function isActive(href: string): boolean {
           </a>
         ))}
       </div>
+
+      <!-- Home link for mobile (left side) -->
+      <a href="/" class="md:hidden text-sm font-semibold text-gray-900 dark:text-white no-underline" aria-label="Home">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+      </a>
 
       <!-- Right side: Dark mode toggle + mobile menu button -->
       <div class="flex items-center gap-2">

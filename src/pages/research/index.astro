@@ -27,7 +27,7 @@ const publications: Paper[] = [
     venue: 'ACL 2026 Main Conference',
     year: 2026,
     abstract: 'Code-switching, alternating between languages within a conversation, is natural for multilingual users, yet poses fundamental challenges for large language models (LLMs). When a user code-switches in their prompt to an LLM, they typically do not specify the expected language of the LLM response, and LLMs often fail to align their output language with user expectations.',
-    links: { pdf: 'https://arxiv.org/pdf/2601.03589', arxiv: 'https://arxiv.org/abs/2601.03589' },
+    links: { pdf: 'https://aclanthology.org/2026.acl-long.2162.pdf', acl: 'https://aclanthology.org/2026.acl-long.2162', arxiv: 'https://arxiv.org/abs/2601.03589' },
   },
   {
     title: 'BabyBabelLM: A Multilingual Benchmark of Developmentally Plausible Training Data',
@@ -114,13 +114,21 @@ const ongoing: OngoingItem[] = [
     description: 'Exploring approaches to improve NLP performance for under-resourced language pairs, particularly Indonesian and Southeast Asian languages.',
     status: 'In Progress',
     tags: ['Multilingual NLP', 'Low-Resource'],
-    repo: 'https://github.com/faizghifari/babybabellm-gptbert',
+    repo: 'https://github.com/faizghifari/scale-resources',
   },
   {
-    title: 'Reasoning Under Uncertainty in LLMs',
-    description: 'Investigating how large language models handle uncertain or ambiguous information during reasoning tasks.',
+    title: 'Cognitive Interpretation of LLMs Through Benchmarks',
+    description: 'Analyzing the cognitive constructs of LLMs through hundreds of verified benchmark results using factor analysis inspired from neuropsychology.',
     status: 'In Progress',
-    tags: ['Reasoning', 'LLMs', 'Uncertainty'],
+    tags: ['Cognitive Science', 'LLMs', 'Factor Analysis'],
+    repo: 'https://github.com/faizghifari/llm-coginterp',
+  },
+  {
+    title: 'Synthetic Data Generation for Low-Resource Languages',
+    description: 'Generating targeted synthetic data for low-resource languages by using sparse autoencoders to discover and bridge cross-lingual gaps within shared embedding spaces.',
+    status: 'In Progress',
+    tags: ['Multilingual NLP', 'Low-Resource'],
+    repo: 'https://github.com/faizghifari/scale-resources',
   },
 ];
 ---
